@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+  use App\Livewire\TasksIndex;
+  use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', TasksIndex::class);
 
 Route::middleware([
     'auth:sanctum',

@@ -11,6 +11,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        {{-- Fontawesome --}}
+        <script src="https://kit.fontawesome.com/558b06b09e.js" crossorigin="anonymous"></script>
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -21,7 +24,7 @@
         <x-banner />
 
         <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+{{--            @livewire('navigation-menu')--}}
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -36,6 +39,8 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <livewire:nav/>
         </div>
 
         @stack('modals')
