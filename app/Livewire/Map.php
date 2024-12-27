@@ -5,11 +5,13 @@ namespace App\Livewire;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-class Nav extends Component
+#[Layout('layouts.app')]
+class Map extends Component
 {
     public function render(): Application|Factory|View|\Illuminate\View\View {
-        return view('livewire.nav');
+        return view('livewire.map');
     }
 }

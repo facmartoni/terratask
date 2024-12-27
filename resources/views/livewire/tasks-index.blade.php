@@ -1,4 +1,5 @@
-<div>
+<div class="flex flex-col justify-center items-center">
+    <h1>Tasks Index</h1>
     <img
       src="{{ asset('images/logo_budeguer_base_transparente.png') }}"
       alt="Logo Budeguer"
