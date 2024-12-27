@@ -13,6 +13,9 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                'budeguerGreen': '#679e48',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
