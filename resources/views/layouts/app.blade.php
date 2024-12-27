@@ -8,8 +8,10 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 
         {{-- Fontawesome --}}
         <script src="https://kit.fontawesome.com/558b06b09e.js" crossorigin="anonymous"></script>
@@ -23,8 +25,8 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100 flex justify-center items-center">
-{{--            @livewire('navigation-menu')--}}
+        <div class="min-h-screen bg-gray-100">
+        {{-- @livewire('navigation-menu') --}}
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -36,7 +38,7 @@
             @endif
 
             <!-- Page Content -->
-            <main class="">
+            <main class="w-full h-full px-4 pt-4 pb-10">
                 {{ $slot }}
             </main>
 
