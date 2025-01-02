@@ -10,11 +10,17 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "blade-ui-kit/blade-icons": "^1.7",
+        "codeat3/blade-carbon-icons": "^2.31",
+        "codeat3/blade-google-material-design-icons": "^1.19",
+        "codeat3/blade-typicons": "^1.6",
         "laravel/framework": "^11.31",
         "laravel/jetstream": "^5.3",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "livewire/livewire": "^3.0"
+        "livewire/livewire": "^3.0",
+        "owenvoke/blade-fontawesome": "^2.8",
+        "ryangjchandler/blade-tabler-icons": "^2.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

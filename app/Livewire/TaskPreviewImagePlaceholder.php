@@ -7,10 +7,8 @@
   use Illuminate\View\View;
   use Livewire\Component;
 
-  class FilterOptions extends Component {
-    public string $active_filter = '';
-
+  class TaskPreviewImagePlaceholder extends Component {
     public function render(): Application|Factory|\Illuminate\Contracts\View\View|View {
-      return view('livewire.filter-options');
+      return view('livewire.task-preview-image-placeholder');
     }
   }

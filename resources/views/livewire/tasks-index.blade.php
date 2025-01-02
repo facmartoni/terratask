@@ -1,7 +1,5 @@
 <div class="w-full">
 
-  <livewire:filter-options/>
-
   <div id="header" class="w-full flex justify-between items-center mb-4">
     <livewire:budeguer-logo/>
     <livewire:page-header title="Tareas"/>
@@ -9,5 +7,9 @@
   </div>
 
   <livewire:tasks-list/>
+
+  @if(!$toggle_options)
+    <livewire:filter-options :$active_filter/>
+  @endif
 
 </div>
