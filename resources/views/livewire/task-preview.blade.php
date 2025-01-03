@@ -1,6 +1,8 @@
 <a href="/tasks/{{ $task->id }}"
    class="block"
-   wire:click="dispatch('hide-filter-options')">
+   wire:click="dispatch('hide-filter-options')"
+   wire:navigate
+>
   <div
     @class([
         "relative flex items-center space-x-3 rounded-lg border border-gray-300 pl-6 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400",

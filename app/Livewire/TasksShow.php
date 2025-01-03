@@ -7,6 +7,7 @@
   use Illuminate\Foundation\Application;
   use Illuminate\View\View;
   use Livewire\Attributes\Layout;
+  use Livewire\Attributes\On;
   use Livewire\Component;
 
   #[Layout('layouts.app')]
@@ -15,6 +16,12 @@
 
     public function mount($task): void {
       $this->task = $task;
+    }
+
+    #[On('task:toggle-complete')]
+    public function toggle_complete(): void {
+      $this->task->completed = !$this->task->completed;
+      $this->task->save();
     }
 
     public function render(): Application|Factory|\Illuminate\Contracts\View\View|View {

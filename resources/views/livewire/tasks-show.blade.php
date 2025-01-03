@@ -1,6 +1,6 @@
 <div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
   @if($task->photo_url != '' && $task->photo_url != null)
-    <div class="pb-5 sm:pb-6 flex items-center justify-center h-40">
+    <div class="flex items-center justify-center h-40">
       <div class="w-full h-full">
         <img
           src="{{ $task->photo_url }}"
@@ -15,8 +15,30 @@
       </div>
     </div>
   @endif
-  <div class="px-4 py-4 sm:px-6">
-    <!-- Content goes here -->
-    <!-- We use less vertical padding on card footers at all sizes than on headers or body sections -->
+  <div class="px-6 py-4 text-center">
+    <x-general.page-header>{{ $task->title }}</x-general.page-header>
+    <p class="mt-4 text-sm text-left">{{ $task->description }}</p>
+    <div class="flex items-center mt-4">
+      <div class="shrink-0 size-10">
+        <img
+          class="w-full h-full rounded-full border border-budeguerGreen"
+          src="{{ $task->author->profile_photo_path }}"
+          alt="{{ $task->author->name }}"
+          onerror="this.src={{ asset('images/logo_budeguer_base_transparente.png') }}"
+        >
+      </div>
+      <div id="users_detail" class="flex-1 flex flex-col justify-start pl-6 text-left">
+        <p class="text-xs">Autor: <span class="text-indigo-500">{{ $task->author->name }}</span></p>
+        @if($task->assignee)
+          <p class="text-xs">Asignada a: <span class="text-indigo-500">{{ $task->assignee->name }}</span></p>
+        @endif
+      </div>
+    </div>
+    @if($task->latitude && $task->longitude)
+      <x-task.map lat="{{ $task->latitude }}" lon="{{ $task->longitude }}"/>
+    @endif
+  </div>
+  <div id="card_footer" class="h-12 w-full flex justify-end py-2 pr-2">
+    <livewire:task-complete-button :completed="$task->completed"/>
   </div>
 </div>
