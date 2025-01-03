@@ -12,6 +12,7 @@
   class Comment extends Model {
     /** @use HasFactory<CommentFactory> */
     use HasFactory;
+
     protected $guarded = [];
 
     public function author(): BelongsTo {
@@ -31,6 +32,9 @@
     }
 
     public function likes(): BelongsToMany {
-      return $this->belongsToMany(Like::class);
+      return $this->belongsToMany(
+        User::class,
+        'likes',
+      );
     }
   }
