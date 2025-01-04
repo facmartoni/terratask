@@ -12,8 +12,13 @@
     </div>
   </div>
   <div id="comment-interaction" class="flex justify-between">
-    <livewire:like-button :liked="$this->liked()" n_likes="{{ $comment->likes->count() }}"/>
+    <livewire:like-button
+      :liked="$this->liked()"
+      :comment_id="$comment->id"
+      n_likes="{{ $comment->likes->count() }}"
+    />
     <div>Reply</div>
   </div>
 </div>
+
 
