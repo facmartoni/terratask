@@ -20,6 +20,9 @@ export default {
                 sans: ['Roboto Slab', ...defaultTheme.fontFamily.sans],
                 serif: ['PT Serif', ...defaultTheme.fontFamily.serif]
             },
+            fontSize: {
+                'xxs': '0.625rem',
+            }
         },
     },
 
