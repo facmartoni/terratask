@@ -2,7 +2,7 @@
   id="comments-box"
   class="container mx-auto sm:px-6 lg:px-8 mt-6"
 >
-  @foreach($task->comments->whereNull('parent') as $comment)
+  @foreach($comments->whereNull('parent') as $comment)
     <livewire:comment
       :$comment
       :key="$comment->id"
