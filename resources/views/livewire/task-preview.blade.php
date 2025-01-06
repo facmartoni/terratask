@@ -1,40 +1,43 @@
-<a href="/tasks/{{ $task->id }}"
-   class="block"
-   wire:click="dispatch('hide-filter-options')"
-   wire:navigate
+<a
+  href="/tasks/{{ $task->id }}"
+  class="block"
+  wire:click="dispatch('hide-filter-options')"
+  wire:navigate
 >
   <div
     @class([
         "relative flex items-center space-x-3 rounded-lg border border-gray-300 pl-6 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400",
-        "bg-red-500" => $task->priority == 3,
-        "bg-red-300" => $task->priority == 2,
-        "bg-red-100" => $task->priority == 1,
+        "bg-green-800" => $task->priority == 3,
+        "bg-green-600" => $task->priority == 2,
+        "bg-green-200" => $task->priority == 1,
       ])
   >
     <div class="shrink-0">
-      <img class="size-8 rounded-full"
-           src="{{ $task->author->profile_photo_path }}"
-           alt="{{ $task->author->name }}">
+      <img
+        class="size-8 rounded-full"
+        src="{{ $task->author->profile_photo_path }}"
+        alt="{{ $task->author->name }}"
+      >
     </div>
     <div class="min-w-0 flex-1">
       <div class="focus:outline-none">
-        <span class="absolute inset-0" aria-hidden="true"></span>
+        <span
+          class="absolute inset-0"
+          aria-hidden="true"
+        ></span>
         <p @class([
                   "truncate text-sm font-medium mb-1",
-                  "text-white" => $task->priority == 3,
-                  "text-gray-900" => $task->priority == 2 || $task->priority == 1
+                  "text-white" => $task->priority == 3 || $task->priority == 2,
+                  "text-gray-900" => $task->priority == 1
                 ])>{{ $task->title }}</p>
         <p @class([
                   "truncate text-xs",
-                  "text-white" => $task->priority == 3,
-                  "text-gray-900" => $task->priority == 2 || $task->priority == 1
+                  "text-white" => $task->priority == 3 || $task->priority == 2,
+                  "text-gray-900" => $task->priority == 1
                  ])>Asignada a:
           <span
-                @class([
-                   "text-indigo-200" => $task->priority == 3,
-                   "text-indigo-500" => $task->priority == 2,
-                   "text-indigo-800" => $task->priority == 1
-                  ])>{{ $task->author->name }}</span></p>
+            class="font-semibold"
+          >{{ $task->author->name }}</span></p>
       </div>
     </div>
     <livewire:task-preview-image

@@ -1,3 +1,3 @@
 <div>
-  <h1 class="font-serif text-2xl">{{ $slot }}</h1>
+  <h1 class="text-2xl font-light">{{ $slot }}</h1>
 </div>

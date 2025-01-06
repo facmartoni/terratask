@@ -17,8 +17,7 @@ export default {
                 'budeguerGreen': '#679e48',
             },
             fontFamily: {
-                sans: ['Roboto Slab', ...defaultTheme.fontFamily.sans],
-                serif: ['PT Serif', ...defaultTheme.fontFamily.serif]
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
             },
             fontSize: {
                 'xxs': '0.625rem',

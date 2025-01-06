@@ -1,8 +1,13 @@
-<div class="absolute top-12 left-20 right-0 w-3/4">
+<div
+  class="absolute top-12 left-20 right-0 w-3/4"
+  wire:transition
+>
   <div class="relative mt-2">
     <ul
       class="absolute z-10 mt-1 max-h-120 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
-      id="options" role="listbox">
+      id="options"
+      role="listbox"
+    >
 
       <livewire:filter-option
         option_id="not-completed"

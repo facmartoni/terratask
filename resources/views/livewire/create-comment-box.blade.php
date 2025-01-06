@@ -1,8 +1,11 @@
-<div class="fixed border-t border-gray-200 bottom-12 left-0 right-0 w-screen h-20 bg-white flex">
+<div
+  class="fixed border-t border-gray-200 bottom-12 left-0 right-0 w-screen h-20 bg-white flex"
+  wire:transition
+>
   <div class="h-full w-16 flex justify-center items-center">
     <x-general.author-photo :user="Auth::user()"/>
   </div>
-  <div class="h-full flex-1 divide-y divide-gray-500 pl-4 pr-2">
+  <div class="h-full flex-1 divide-y divide-gray-500 pr-2">
     <div
       id="replying_to"
       class="text-xs text-gray-600 py-1 h-1/3 flex items-center"
