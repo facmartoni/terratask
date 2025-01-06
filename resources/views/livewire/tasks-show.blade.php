@@ -40,8 +40,13 @@
     </div>
     <div
       id="card_footer"
-      class="h-12 w-full flex justify-end py-2 pr-2"
+      class="h-12 w-full flex justify-between py-2 px-2"
     >
+      <x-button
+        class="text-xxs"
+        wire:click="dispatch('create-comment')"
+      >Comentar
+      </x-button>
       <livewire:task-complete-button :completed="$task->completed"/>
     </div>
   </div>
@@ -51,7 +56,8 @@
   @if($request_for_comment)
     <livewire:create-comment-box
       :to="$requested_comment"
-      :key="$requested_comment->id"
+      :key="$requested_comment ? $requested_comment->id : 'empty-create-comment-box'"
+      :$task
     />
   @endif
 </div>

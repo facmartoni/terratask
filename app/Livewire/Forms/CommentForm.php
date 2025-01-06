@@ -12,7 +12,7 @@
     #[Validate('required|max:5000')]
     public string $content;
     public int $task_id;
-    public int $parent_id;
+    public ?int $parent_id;
     public int $author_id;
 
     public function setComment(Comment $comment): void {

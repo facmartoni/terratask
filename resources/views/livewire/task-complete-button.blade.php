@@ -7,5 +7,5 @@
     "bg-budeguerGreen text-white hover:bg-green-500" => !$completed
   ])
   wire:click="dispatch('task:toggle-complete')"
->{{ !$completed ? "Marcar cómo completada" : "Marcar cómo no completada" }}
+>{{ !$completed ? "Marcar cómo completada" : "✓ Marcar cómo no completada" }}
 </button>

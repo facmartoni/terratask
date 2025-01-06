@@ -15,7 +15,7 @@
   class TasksShow extends Component {
     public Task $task;
     public bool $request_for_comment = false;
-    public Comment $requested_comment;
+    public ?Comment $requested_comment;
 
     public function mount($task): void {
       $this->task = $task;
@@ -28,12 +28,13 @@
     }
 
     #[On('create-comment')]
-    public function prepare_comment_creation(Comment $reply_to): void {
+    public function prepare_comment_creation(?Comment $reply_to): void {
       $this->request_for_comment = true;
-      $this->requested_comment = $reply_to;
+      $this->requested_comment = $reply_to->exists ? $reply_to : null;
     }
 
     #[On('comment-posted')]
+    #[On('close-create-comment-box')]
     public function hide_create_comment_box(): void {
       $this->request_for_comment = false;
       unset($this->requested_comment);

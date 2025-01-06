@@ -2,16 +2,31 @@
   <div class="h-full w-16 flex justify-center items-center">
     <x-general.author-photo :user="Auth::user()"/>
   </div>
-  <div class="flex-1 divide-y divide-gray-500 pl-4 pr-2">
+  <div class="h-full flex-1 divide-y divide-gray-500 pl-4 pr-2">
     <div
       id="replying_to"
-      class="text-xs text-gray-600 py-1"
+      class="text-xs text-gray-600 py-1 h-1/3 flex items-center"
     >
-      <p>Respondiendo a: <span class="text-indigo-500">{{ $to->author->name }}</span></p>
+      <div class="w-full flex justify-between">
+        @if($to)
+          <p>Respondiendo a: <span class="text-indigo-500">
+          {{ $to->author->name }}
+        </span></p>
+        @else
+          <p>Comentando <span class="text-indigo-500">
+          {{ $task->title }}
+        </span></p>
+        @endif
+        <button
+          class="text-red-500 underline"
+          wire:click="dispatch('close-create-comment-box')"
+        >X
+        </button>
+      </div>
     </div>
     <div
       id="form-container"
-      class="pt-2 flex"
+      class="flex items-center h-2/3"
     >
       <form
         wire:submit.prevent="save"
