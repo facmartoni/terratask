@@ -1,6 +1,5 @@
 <div
   class="absolute top-12 left-20 right-0 w-3/4"
-  wire:transition
 >
   <div class="relative mt-2">
     <ul

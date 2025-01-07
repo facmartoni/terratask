@@ -25,9 +25,15 @@
           id="users_detail"
           class="flex-1 flex flex-col justify-start pl-6 text-left"
         >
-          <p class="text-xs">Autor: <span class="text-indigo-500">{{ $task->author->name }}</span></p>
+          <a
+            href="/users/{{ $task->author->id }}"
+            class="text-xs pb-1"
+          >Autor: <span class="text-indigo-500">{{ $task->author->name }}</span></a>
           @if($task->assignee)
-            <p class="text-xs">Asignada a: <span class="text-indigo-500">{{ $task->assignee->name }}</span></p>
+            <a
+              href="/users/{{ $task->assignee->id }}"
+              class="text-xs"
+            >Asignada a: <span class="text-indigo-500">{{ $task->assignee->name }}</span></a>
           @endif
         </div>
       </div>

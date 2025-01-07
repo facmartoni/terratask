@@ -37,7 +37,7 @@
                  ])>Asignada a:
           <span
             class="font-semibold"
-          >{{ $task->author->name }}</span></p>
+          >{{ $task->assignee ? $task->assignee->name : 'nadie' }}</span></p>
       </div>
     </div>
     <livewire:task-preview-image

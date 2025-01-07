@@ -1,4 +1,6 @@
-<div class="shrink-0 size-10">
+@props(['size' => '10', 'user'])
+
+<div class="shrink-0 size-{{ $size }}">
   <img
     class="w-full h-full rounded-full border border-budeguerGreen"
     src="{{ $user->profile_photo_path }}"

@@ -1,6 +1,6 @@
 <a
   href="/users/{{ $user->id }}"
-  class="block h-20 w-56"
+  class="block h-20 w-full"
   wire:navigate
 >
   <div

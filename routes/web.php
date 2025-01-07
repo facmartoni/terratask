@@ -6,6 +6,7 @@
   use App\Livewire\TasksCreate;
   use App\Livewire\TasksIndex;
   use App\Livewire\TasksShow;
+  use App\Livewire\UserDetail;
   use Illuminate\Support\Facades\Route;
 
   Route::middleware([
@@ -18,6 +19,7 @@
     Route::get('/search', Search::class);
     Route::get('/tasks-create', TasksCreate::class);
     Route::get('/tasks/{task}', TasksShow::class);
+    Route::get('/users/{user}', UserDetail::class);
     Route::get('/map', Map::class);
     Route::get('/profile', Profile::class);
 

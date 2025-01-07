@@ -1,6 +1,9 @@
 <div class="fixed bottom-0 left-0 right-0 bg-white">
   <div class="border-y border-gray-200">
-    <nav class="-mb-px flex items-center" aria-label="Tabs">
+    <nav
+      class="-mb-px flex items-center"
+      aria-label="Tabs"
+    >
       <livewire:nav-link
         href="/"
         icon="fa-list-check"
@@ -22,9 +25,9 @@
         :active="request()->is('map')"
       />
       <livewire:nav-link
-        href="/profile"
+        href="/users/{{ Auth::id() }}"
         icon="fa-user"
-        :active="request()->is('profile')"
+        :active="request()->is('users/' . Auth::id())"
       />
     </nav>
   </div>

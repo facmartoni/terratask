@@ -4,7 +4,7 @@
     @foreach($tasks as $task)
       <livewire:task-preview
         :$task
-        :key="$task->id"
+        :key="'task-' . $task->id"
       />
     @endforeach
   @else
