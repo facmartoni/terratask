@@ -1,10 +1,9 @@
 <div class="flex flex-col items-center">
   <x-general.page-header class="my-4">Crear Tarea</x-general.page-header>
   <form
-    action=""
     class="w-full"
   >
-    <x-label for="task-title">Nombre</x-label>
+    <x-label for="task-title">Título</x-label>
     <x-input
       id="task-title"
       name="task-title"
@@ -15,7 +14,7 @@
     <x-textarea
       id="task-description"
       name="task-description"
-      placeholder="&quot;Aplicar pesticidas x día en x lugar...&quot;"
+      placeholder="&quot;Aplicar herbicidas para malezas pre-emergentes..&quot;"
       class="w-full h-20 text-sm mb-4"
     />
     <label for="task-photo">
@@ -41,7 +40,7 @@
     >
     <livewire:task-priority-selector/>
     <div class="w-full flex justify-center">
-      <x-button class="mt-6 bg-indigo-600">Crear</x-button>
+      <x-button class="mt-6 bg-indigo-600 hover:bg-indigo-500">Crear</x-button>
     </div>
   </form>
 </div>
