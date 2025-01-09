@@ -1,3 +1,6 @@
+ngrok.yml
+storage/sharefile
+
 /.phpunit.cache
 /node_modules
 /public/build

@@ -17,17 +17,21 @@
       placeholder="&quot;Aplicar herbicidas para malezas pre-emergentes..&quot;"
       class="w-full h-20 text-sm mb-4"
     />
-    <label for="task-photo">
-      <x-button class="w-full text-center mb-4">
-        <x-carbon-camera class="size-8 pr-2"/>
-        Sacar Foto y Capturar Ubicación
-      </x-button>
+    <label
+      for="task-photo"
+      class="w-full text-center mb-4 inline-flex items-center px-4 py-2 bg-budeguerGreen border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150"
+    >
+      <x-carbon-camera class="size-8 pr-2"/>
+      Sacar Foto y Capturar Ubicación
     </label>
     <input
       id="task-photo"
       name="task-photo"
       type="file"
+      accept="image/*"
+      capture="camera"
       class="hidden"
+      wire:change="dispatch('photo-captured')"
     />
     <x-label
       for="task-assignee"
@@ -44,3 +48,29 @@
     </div>
   </form>
 </div>
+
+@script
+<script>
+
+    // *** GPS Management ***
+    window.addEventListener('photo-captured', () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const {latitude, longitude} = position.coords;
+                    console.log(`Location captured: Latitude ${latitude}, Longitude: ${longitude}`)
+                    // Handle GPS Data
+                },
+                (error) => {
+                    console.error(`Error capturing location: `, error.message)
+                    // Handle Error
+                }
+            )
+        } else {
+            console.error('Geolocation is not supported by this browser.');
+            // Handle GPS not supported
+        }
+    })
+
+</script>
+@endscript
