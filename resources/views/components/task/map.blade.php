@@ -1,12 +1,13 @@
-@props(['lat', 'lon'])
+@props(['lat', 'lon', 'w' => 300, 'h' => 100, 'z' => 8])
 
-<div class="mt-6">
+<div class="h-full">
   <iframe
-    width="300"
-    height="100"
+    width="{{ $w }}"
+    height="{{ $h }}"
     style="border:0"
     loading="lazy"
     allowfullscreen
-    src="https://www.google.com/maps?q={{ $lat }},{{ $lon }}&hl=es&z=8&output=embed">
+    src="https://www.google.com/maps?q={{ $lat }},{{ $lon }}&hl=es&z={{ $z }}&output=embed"
+  >
   </iframe>
 </div>
