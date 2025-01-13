@@ -4,7 +4,7 @@
       <div class="flex items-center justify-center h-40">
         <div class="w-full h-full">
           <img
-            src="{{ $task->photo_url }}"
+            src="{{ \Illuminate\Support\Facades\Storage::url($task->photo_url) }}"
             alt="Foto de la Tarea"
             onerror="
             this.src='{{ asset('images/grupo_isologo.png') }}';
@@ -19,7 +19,7 @@
     <div class="px-6 py-4 text-center">
       <x-general.page-header>{{ $task->title }}</x-general.page-header>
       <p class="mt-4 text-sm text-left">{{ $task->description }}</p>
-      <div class="flex items-center mt-4">
+      <div class="flex items-center my-4">
         <x-general.author-photo :user="$task->author"/>
         <div
           id="users_detail"

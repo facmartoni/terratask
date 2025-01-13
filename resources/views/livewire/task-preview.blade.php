@@ -41,7 +41,7 @@
       </div>
     </div>
     <livewire:task-preview-image
-      image_url="{{ $task->photo_url }}"
+      image_url="{{ \Illuminate\Support\Facades\Storage::url($task->photo_url) }}"
       {{-- :key="$task->photo_url" --}}
     />
   </div>
