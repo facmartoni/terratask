@@ -1,0 +1,82 @@
+{
+    "name": "Budeguer Tareas",
+    "short_name": "Budeguer",
+    "description": "App para gestión de tareas en el campo, para el Grupo Budeguer",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#679e48",
+    "background_color": "#ffffff",
+    "id": "budeguer-tareas",
+    "lang": "es",
+    "icons": [
+        {
+            "src": "icons/192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any"
+        },
+        {
+            "src": "icons/512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshots/desktop.png",
+            "type": "image/png",
+            "sizes": "1024x768"
+        },
+        {
+            "src": "screenshots/mobile.png",
+            "sizes": "750x1334",
+            "type": "image/png"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Crear Tarea",
+            "url": "/tasks-create",
+            "short_name": "Crear",
+            "description": "Crear una nueva tarea",
+            "icons": [
+                {
+                    "src": "icons/192.png",
+                    "type": "image/png",
+                    "sizes": "192x192",
+                    "purpose": "any"
+                }
+            ]
+        },
+        {
+            "name": "Buscar Tareas / Usuarios",
+            "url": "/search",
+            "short_name": "Buscar",
+            "description": "Buscar Tareas y/o Usuarios",
+            "icons": [
+                {
+                    "src": "icons/192.png",
+                    "type": "image/png",
+                    "sizes": "192x192",
+                    "purpose": "any"
+                }
+            ]
+
+        },
+        {
+            "name": "Ver Todas las Tareas",
+            "url": "/",
+            "short_name": "Ver Tareas",
+            "description": "Ver todas las tareas del grupo",
+            "icons": [
+                {
+                    "src": "icons/192.png",
+                    "type": "image/png",
+                    "sizes": "192x192",
+                    "purpose": "any"
+                }
+            ]
+        }
+    ]
+}

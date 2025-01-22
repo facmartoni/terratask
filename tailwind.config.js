@@ -21,7 +21,11 @@ export default {
             },
             fontSize: {
                 'xxs': '0.625rem',
-            }
+            },
+            screens: {
+                'browser': {raw: '(display-mode: browser)'},
+                'standalone': {raw: '(display-mode: standalone)'},
+            },
         },
     },
 

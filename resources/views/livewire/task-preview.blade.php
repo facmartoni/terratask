@@ -1,3 +1,13 @@
+{{-- Useful code for development. Rewrite when in prod for a time 👇🏼 --}}
+@php
+  $image_parsed_path = '';
+  if(str_contains($task->photo_url, 'picsum')) {
+    $image_parsed_path = $task->photo_url;
+  } else {
+    $image_parsed_path = \Illuminate\Support\Facades\Storage::url($task->photo_url);
+  }
+@endphp
+
 <a
   href="/tasks/{{ $task->id }}"
   class="block"
@@ -41,7 +51,7 @@
       </div>
     </div>
     <livewire:task-preview-image
-      image_url="{{ \Illuminate\Support\Facades\Storage::url($task->photo_url) }}"
+      image_url="{{ $image_parsed_path }}"
       {{-- :key="$task->photo_url" --}}
     />
   </div>

@@ -13,13 +13,21 @@
 
   <title>{{ config('app.name', 'Laravel') }}</title>
 
-  {{-- PWA --}}
+  {{-- START PWA CONFIG --}}
 
   <!-- Manifest Link -->
   <link
     rel="manifest"
-    href="app.webmanifest"
+    href="{{ asset('app.webmanifest') }}"
   >
+
+  <!-- Apple Icon -->
+  <link
+    rel="apple-touch-icon"
+    href="{{ asset('/icons/512.png') }}"
+  >
+
+  {{-- END PWA CONFIG --}}
 
   <!-- Fonts -->
   <link
