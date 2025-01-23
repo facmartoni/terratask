@@ -1,5 +1,6 @@
 ngrok.yml
 storage/sharefile
+public/assets
 
 /.phpunit.cache
 /node_modules

@@ -8,12 +8,9 @@
   use Illuminate\Foundation\Application;
   use Illuminate\View\View;
   use Laravel\Jetstream\InteractsWithBanner;
-  use Livewire\Attributes\Layout;
   use Livewire\Attributes\On;
-  use Livewire\Component;
 
-  #[Layout('layouts.app')]
-  class TasksShow extends Component {
+  class TasksShow extends App {
     use InteractsWithBanner;
 
     public Task $task;

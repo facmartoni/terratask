@@ -1,5 +1,11 @@
 import './bootstrap';
 
+// We will use localforage to cache and save necessary data in the navigator for the offline fallback.
+// 👉🏼 A list of users, with id and name, will be cached for displaying the possible assignees of a task while offline.
+// 👉🏼 The tasks created while offline will be saved, for saving them in the server DB when back online.
+import localforage from "localforage";
+
+//  Service Worker Registration
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker
@@ -12,3 +18,17 @@ if ('serviceWorker' in navigator) {
             })
     });
 }
+
+// Inform Livewire that the app is online.
+// This serves the purpose of, for example, preparing the list of users to cache for the offline fallback.
+window.addEventListener('online', () => {
+    // We name this custom event "app-online" for the purpose of differentiating it with the reserved "online" event.
+    window.dispatchEvent(new CustomEvent('app-online'));
+})
+
+// Bring users id and name to JavaScript and save them in the navigator storage with localforage.
+window.addEventListener('ready-to-cache-users', async (e) => {
+    // This data will be persistent and can be read while offline!
+    await localforage.setItem('users', e.detail[0].users);
+})
+

@@ -7,13 +7,10 @@
   use Illuminate\Contracts\View\Factory;
   use Illuminate\Contracts\View\View;
   use Illuminate\Foundation\Application;
-  use Livewire\Attributes\Layout;
   use Livewire\Attributes\On;
-  use Livewire\Component;
   use Livewire\WithFileUploads;
 
-  #[Layout('layouts.app')]
-  class TasksCreate extends Component {
+  class TasksCreate extends App {
     use WithFileUploads;
 
     public TaskForm $form;

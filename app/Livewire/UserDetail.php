@@ -7,12 +7,9 @@
   use Illuminate\Foundation\Application;
   use Illuminate\Support\Collection;
   use Illuminate\View\View;
-  use Livewire\Attributes\Layout;
   use Livewire\Attributes\On;
-  use Livewire\Component;
 
-  #[Layout('layouts.app')]
-  class UserDetail extends Component {
+  class UserDetail extends App {
     public User $user;
     public Collection $tasks;
     public Collection $tasks_assigned;

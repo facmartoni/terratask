@@ -11,6 +11,9 @@
     content="ie=edge"
   >
 
+  <!-- Localforage -->
+  <script src="assets/localforage.min.js"></script>
+
   <!-- START PWA CONFIG -->
 
   <!-- Manifest Link -->
@@ -158,9 +161,13 @@
           </div>
         </div>
 
-        <!-- TODO -->
         <!-- Task Assignment -->
-        <div class="mt-4">
+        <div
+          class="mt-4"
+          x-data="{
+          users: localforage.getItem('users')
+        }"
+        >
           <label
             for="task-assignee"
             class="block text-sm font-medium text-gray-700"
@@ -168,12 +175,23 @@
           <div class="mt-2 grid grid-cols-1">
             <select
               id="task-assignee"
-              name="location"
+              name="task-assignee"
               class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
             >
-              <option>United States</option>
-              <option selected>Canada</option>
-              <option>Mexico</option>
+              <option
+                value="orphan"
+                selected
+              >Sin Asignar
+              </option>
+              <template
+                x-for="user in users"
+                :key="user.id"
+              >
+                <option
+                  :value="user.id"
+                  x-text="user.name"
+                ></option>
+              </template>
             </select>
             <svg
               class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"

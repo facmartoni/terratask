@@ -8,11 +8,8 @@
   use Illuminate\Contracts\View\View;
   use Illuminate\Foundation\Application;
   use Illuminate\Support\Collection;
-  use Livewire\Attributes\Layout;
-  use Livewire\Component;
 
-  #[Layout('layouts.app')]
-  class Search extends Component {
+  class Search extends App {
     public string $q;
     public ?Collection $tasks_results = null;
     public ?Collection $users_results = null;

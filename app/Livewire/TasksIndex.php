@@ -5,12 +5,9 @@
   use Illuminate\Contracts\View\Factory;
   use Illuminate\Contracts\View\View;
   use Illuminate\Foundation\Application;
-  use Livewire\Attributes\Layout;
   use Livewire\Attributes\On;
-  use Livewire\Component;
 
-  #[Layout('layouts.app')]
-  class TasksIndex extends Component {
+  class TasksIndex extends App {
 
     public bool $toggle_options = true;
     public string $active_filter = 'not-completed';

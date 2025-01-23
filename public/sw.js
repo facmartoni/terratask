@@ -17,9 +17,9 @@ setDefaultHandler(new NetworkOnly());
 
 // pageCache(); // Use this if I will cache the Task Create page.
 
-const urlsToCache = [
-    ''
-];
+// const urlsToCache = [
+//     'assets/localforage.min.js'
+// ];
 
 googleFontsCache();
 staticResourceCache();

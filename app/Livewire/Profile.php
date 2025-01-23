@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Livewire;
+  namespace App\Livewire;
 
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
-use Livewire\Attributes\Layout;
-use Livewire\Component;
+  use Illuminate\Contracts\View\Factory;
+  use Illuminate\Contracts\View\View;
+  use Illuminate\Foundation\Application;
 
-#[Layout('layouts.app')]
-class Profile extends Component
-{
+  class Profile extends App {
     public function render(): Application|Factory|View|\Illuminate\View\View {
-        return view('livewire.profile');
+      return view('livewire.profile');
     }
-}
+  }
