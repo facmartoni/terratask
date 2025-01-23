@@ -1,1 +1,329 @@
-Hello, offline!
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  >
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="ie=edge"
+  >
+
+  <!-- START PWA CONFIG -->
+
+  <!-- Manifest Link -->
+  <link
+    rel="manifest"
+    href="app.webmanifest"
+  >
+
+  <!-- Apple Icon -->
+  <link
+    rel="apple-touch-icon"
+    href="icons/512.png"
+  >
+
+  <!-- END PWA CONFIG -->
+
+  <!-- Fonts -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Slab:wght@100..900&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- DEV ONLY - COMMENT IN PROD -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    src="//unpkg.com/alpinejs"
+    defer
+  ></script>
+
+  <title>Crear Tarea (sin conexión)</title>
+</head>
+<body
+  class="font-sans antialiased"
+>
+<div class="min-h-screen bg-gray-100">
+  <main class="w-full h-full px-4 pt-4 pb-20">
+    <div class="flex flex-col items-center">
+
+      <div>
+        <h1 class="text-2xl font-light my-4">
+          Crear Tarea (sin conexión)
+        </h1>
+      </div>
+
+      <form
+        class="w-full"
+        enctype="multipart/form-data"
+        method="POST"
+      >
+
+        <!-- Task Title and Description -->
+
+        <label
+          class="block font-medium text-sm text-gray-700"
+          for="task-title"
+        >
+          Título
+        </label>
+        <input
+          class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full text-sm h-10 px-2"
+          id="task-title"
+          name="task-title"
+          placeholder="&quot;Aplicar agroquímicos&quot;, &quot;Ralear maleza hoy&quot;..."
+          required
+        >
+
+        <label
+          class="block font-medium text-sm text-gray-700 mt-4"
+          for="task-description"
+        >
+          Descripción
+        </label>
+        <textarea
+          class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full text-sm h-20"
+          id="task-description"
+          name="task-description"
+          placeholder="&quot;Aplicar herbicidas para malezas pre-emergentes..&quot;"
+        >
+        </textarea>
+
+        <!-- Photo and Geolocation Inputs -->
+
+        <label
+          for="task-photo-input"
+          class="w-full text-center mt-4 inline-flex items-center justify-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150"
+        >
+          Sacar Foto y Capturar Ubicación
+        </label>
+        <input
+          id="task-photo-input"
+          name="task-photo-input"
+          type="file"
+          accept="image/*"
+          capture="environment"
+          class="hidden"
+        />
+
+        <!-- TODO -->
+        <div
+          class="w-full flex justify-between gap-x-2 h-44 mt-4"
+          id="photo-and-map-preview"
+          x-data="{
+            photoAndGeolocationCaptured: false,
+            mapSrc: '',
+            imgSrc: ''
+          }"
+          x-show="photoAndGeolocationCaptured"
+          @photo-and-location-captured="
+            console.log('photo-and-location-captured was dispatched...');
+            console.log($event.detail);
+            photoAndGeolocationCaptured = true;
+            mapSrc = $event.detail.mapSrc;
+            imgSrc = $event.detail.imgSrc;
+          "
+        >
+          <div class="shrink-0 flex-1">
+            <img
+              id="task-photo-preview"
+              :src="imgSrc"
+              alt="Previsualización de Foto"
+              class="w-full h-full object-cover"
+            >
+          </div>
+          <div class="shrink-0 flex-1">
+            <div class="h-full">
+              <iframe
+                width="100%"
+                height="100%"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                :src="mapSrc"
+              >
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- TODO -->
+        <!-- Task Assignment -->
+        <div class="mt-4">
+          <label
+            for="task-assignee"
+            class="block text-sm font-medium text-gray-700"
+          >Asignar a...</label>
+          <div class="mt-2 grid grid-cols-1">
+            <select
+              id="task-assignee"
+              name="location"
+              class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+            >
+              <option>United States</option>
+              <option selected>Canada</option>
+              <option>Mexico</option>
+            </select>
+            <svg
+              class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              aria-hidden="true"
+              data-slot="icon"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Task Priority -->
+
+        <fieldset class="mt-4 w-full flex justify-center text-center">
+          <legend class="block text-sm/6 text-gray-900">Elige una prioridad:</legend>
+          <div class="mt-6 flex items-center space-x-3">
+
+            <div class="text-center">
+              <label
+                aria-label="Light Green"
+                class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-green-200 ring-current focus:outline-none"
+              >
+                <input
+                  type="radio"
+                  name="priority"
+                  value="1"
+                  class="sr-only"
+                >
+                <span
+                  aria-hidden="true"
+                  class="size-8 rounded-full border border-black/10 bg-current"
+                ></span>
+              </label>
+              <span class="text-xs">Baja</span>
+            </div>
+
+            <div class="text-center">
+              <label
+                aria-label="Green"
+                class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-green-600 ring-current focus:outline-none"
+              >
+                <input
+                  type="radio"
+                  name="priority"
+                  value="2"
+                  class="sr-only"
+                >
+                <span
+                  aria-hidden="true"
+                  class="size-8 rounded-full border border-black/10 bg-current"
+                ></span>
+              </label>
+              <span class="text-xs">Media</span>
+            </div>
+
+            <div class="text-center">
+              <label
+                aria-label="Strong Green"
+                class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-green-800 ring-current focus:outline-none"
+              >
+                <input
+                  type="radio"
+                  name="priority"
+                  value="3"
+                  class="sr-only"
+                >
+                <span
+                  aria-hidden="true"
+                  class="size-8 rounded-full border border-black/10 bg-current"
+                ></span>
+              </label>
+              <span class="text-xs">Alta</span>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <div class="w-full flex justify-center">
+          <button
+            type="submit"
+            class="mt-6 bg-indigo-600 hover:bg-indigo-500 inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150"
+          >
+            Crear
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+</div>
+</body>
+<script>
+
+    // *** GPS and Photo Preview Management ***
+
+    document.getElementById('task-photo-input').addEventListener('change', (event) => {
+        if (navigator.geolocation) {
+
+            checkGPSPermissions();
+
+            // Get current location
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const {latitude, longitude} = position.coords;
+                    console.log(`Location captured: Latitude ${latitude}, Longitude: ${longitude}`)
+
+                    // *** Photo Preview Management ***
+
+                    const photoFile = event.target.files[0];
+                    if (photoFile) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const arrayBuffer = e.target.result;
+                            const blob = new Blob([arrayBuffer], {type: photoFile.type});
+                            const src = URL.createObjectURL(blob);
+                            document.getElementById("photo-and-map-preview").dispatchEvent(new CustomEvent('photo-and-location-captured', {
+                                detail: {
+                                    mapSrc: `https://www.google.com/maps?q=${latitude},${longitude}&hl=es&z=18&output=embed`,
+                                    imgSrc: src
+                                }
+                            }));
+
+                            // URL.revokeObjectURL(src); // TO IMPLEMENT
+                        }
+                        reader.readAsArrayBuffer(photoFile);
+                    }
+                },
+                (error) => {
+                    console.error(`Error capturing location: `, error.message)
+                    // Handle Error
+                }
+            )
+        } else {
+            console.error('Geolocation is not supported by this browser.');
+            // Handle GPS not supported
+        }
+    })
+
+    function checkGPSPermissions() {
+        navigator.permissions.query({name: 'geolocation'}).then(function (result) {
+            console.log(`Permissions are: ${result.state}`)
+        })
+    }
+
+</script>
+</html>
