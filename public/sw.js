@@ -8,19 +8,28 @@ const {
     staticResourceCache,
     offlineFallback,
     googleFontsCache,
-    warmStragegyCache
+    warmStrategyCache
 } = workbox.recipes;
-const {setDefaultHandler} = workbox.routing;
-const {NetworkOnly} = workbox.strategies;
+const {setDefaultHandler, registerRoute, staleWithRevalidate} = workbox.routing;
+const {NetworkOnly, CacheFirst} = workbox.strategies;
 
 setDefaultHandler(new NetworkOnly());
 
 // pageCache(); // Use this if I will cache the Task Create page.
 
-// const urlsToCache = [
-//     'assets/localforage.min.js'
-// ];
+const urls = [
+    '/assets/localforage.min.js',
+    '/assets/alpine.min.js',
+    '/offline.css',
+    '/app.webmanifest'
+];
+const strategy = new CacheFirst();
 
+urls.forEach(url => registerRoute(url, strategy));
+
+// registerRoute('/app.webmanifest', new staleWithRevalidate());
+
+warmStrategyCache({urls, strategy});
 googleFontsCache();
 staticResourceCache();
 imageCache();

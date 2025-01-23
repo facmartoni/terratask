@@ -21,9 +21,24 @@ if ('serviceWorker' in navigator) {
 
 // Inform Livewire that the app is online.
 // This serves the purpose of, for example, preparing the list of users to cache for the offline fallback.
-window.addEventListener('online', () => {
-    // We name this custom event "app-online" for the purpose of differentiating it with the reserved "online" event.
-    window.dispatchEvent(new CustomEvent('app-online'));
+window.addEventListener('load', () => {
+    let tasks = [];
+
+    localforage.iterate(function (value, key, iterationNumber) {
+        if (key.includes('task')) {
+            tasks.push(value);
+            localforage.removeItem(key).then(() => console.log('Removed ' + key));
+        }
+    })
+        .then(() => {
+            console.log('Tasks iterated:' + tasks);
+            window.dispatchEvent(new CustomEvent('ready-to-save-tasks', {
+                detail: {tasks}
+            }));
+            // We name this custom event "app-online" for the purpose of differentiating it with the reserved "online" event.
+            window.dispatchEvent(new CustomEvent('app-online'));
+        })
+        .catch((e) => console.log('Error iterating tasks:' + e));
 })
 
 // Bring users id and name to JavaScript and save them in the navigator storage with localforage.

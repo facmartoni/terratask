@@ -46,9 +46,22 @@
   >
 
   <!-- DEV ONLY - COMMENT IN PROD -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <!-- <script -->
+  <!--   src="//unpkg.com/alpinejs" -->
+  <!--   defer -->
+  <!-- ></script> -->
+
+  <!-- PROD ONLY - COMMENT IN DEV -->
+
+  <!-- Tailwind compiled for this fallback with the Tailwind CLI -->
+  <link
+    rel="stylesheet"
+    href="offline.css"
+  >
+  <!-- Alpine.js, cached -->
   <script
-    src="//unpkg.com/alpinejs"
+    src="assets/alpine.min.js"
     defer
   ></script>
 
@@ -69,8 +82,16 @@
 
       <form
         class="w-full"
+        id="form"
         enctype="multipart/form-data"
         method="POST"
+        @submit.prevent="submit"
+        x-data="getFormData"
+        @photo-and-location-captured.window="
+          form.latitude = $event.detail.latitude;
+          form.longitude = $event.detail.longitude;
+          form.photoBase64 = $event.detail.photoBase64;
+        "
       >
 
         <!-- Task Title and Description -->
@@ -86,6 +107,7 @@
           id="task-title"
           name="task-title"
           placeholder="&quot;Aplicar agroquímicos&quot;, &quot;Ralear maleza hoy&quot;..."
+          x-model="form.title"
           required
         >
 
@@ -96,10 +118,11 @@
           Descripción
         </label>
         <textarea
-          class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full text-sm h-20"
+          class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full text-sm h-20 p-2"
           id="task-description"
           name="task-description"
           placeholder="&quot;Aplicar herbicidas para malezas pre-emergentes..&quot;"
+          x-model="form.description"
         >
         </textarea>
 
@@ -120,7 +143,6 @@
           class="hidden"
         />
 
-        <!-- TODO -->
         <div
           class="w-full flex justify-between gap-x-2 h-44 mt-4"
           id="photo-and-map-preview"
@@ -130,9 +152,7 @@
             imgSrc: ''
           }"
           x-show="photoAndGeolocationCaptured"
-          @photo-and-location-captured="
-            console.log('photo-and-location-captured was dispatched...');
-            console.log($event.detail);
+          @photo-and-location-captured.window="
             photoAndGeolocationCaptured = true;
             mapSrc = $event.detail.mapSrc;
             imgSrc = $event.detail.imgSrc;
@@ -164,9 +184,6 @@
         <!-- Task Assignment -->
         <div
           class="mt-4"
-          x-data="{
-          users: localforage.getItem('users')
-        }"
         >
           <label
             for="task-assignee"
@@ -177,6 +194,7 @@
               id="task-assignee"
               name="task-assignee"
               class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              x-model="form.assignee"
             >
               <option
                 value="orphan"
@@ -212,13 +230,19 @@
         <!-- Task Priority -->
 
         <fieldset class="mt-4 w-full flex justify-center text-center">
-          <legend class="block text-sm/6 text-gray-900">Elige una prioridad:</legend>
-          <div class="mt-6 flex items-center space-x-3">
+          <legend class="block text-sm text-gray-700">Elige una prioridad:</legend>
+          <div class="mt-2 flex items-center space-x-3">
 
-            <div class="text-center">
+            <div
+              class="text-center"
+              @click="selectedPriority = 'low'; form.priority = 1"
+            >
               <label
                 aria-label="Light Green"
-                class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-green-200 ring-current focus:outline-none"
+                :class="
+                'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-green-200 ring-current focus:outline-none' +
+                (selectedPriority === 'low' ? ' ring ring-offset-1' : '')
+                "
               >
                 <input
                   type="radio"
@@ -234,10 +258,16 @@
               <span class="text-xs">Baja</span>
             </div>
 
-            <div class="text-center">
+            <div
+              class="text-center"
+              @click="selectedPriority = 'mid'; form.priority = 2"
+            >
               <label
                 aria-label="Green"
-                class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-green-600 ring-current focus:outline-none"
+                :class="
+                'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-green-600 ring-current focus:outline-none' +
+                (selectedPriority === 'mid' ? ' ring ring-offset-1' : '')
+                "
               >
                 <input
                   type="radio"
@@ -253,10 +283,16 @@
               <span class="text-xs">Media</span>
             </div>
 
-            <div class="text-center">
+            <div
+              class="text-center"
+              @click="selectedPriority = 'high'; form.priority = 3"
+            >
               <label
                 aria-label="Strong Green"
-                class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-green-800 ring-current focus:outline-none"
+                :class="
+                'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-green-800 ring-current focus:outline-none' +
+                (selectedPriority === 'high' ? ' ring ring-offset-1' : '')
+                "
               >
                 <input
                   type="radio"
@@ -292,6 +328,31 @@
 </body>
 <script>
 
+    window.addEventListener('online', () => {
+        location.reload();
+    });
+
+    function getFormData() {
+        return {
+            users: localforage.getItem('users'),
+            selectedPriority: 'low',
+            form: {
+                title: null,
+                description: null,
+                photoBase64: null,
+                latitude: null,
+                longitude: null,
+                assignee: null,
+                priority: 1, // TODO
+            },
+            submit() {
+                let taskIdentifier = `task:${this.form.title.trim().toLowerCase().replace(/\s+/g, '-')}`;
+                localforage.setItem(taskIdentifier, {...this.form});
+                location.reload();
+            }
+        }
+    }
+
     // *** GPS and Photo Preview Management ***
 
     document.getElementById('task-photo-input').addEventListener('change', (event) => {
@@ -311,11 +372,13 @@
                     if (photoFile) {
                         const reader = new FileReader();
                         reader.onload = (e) => {
-                            const arrayBuffer = e.target.result;
-                            const blob = new Blob([arrayBuffer], {type: photoFile.type});
-                            const src = URL.createObjectURL(blob);
-                            document.getElementById("photo-and-map-preview").dispatchEvent(new CustomEvent('photo-and-location-captured', {
+                            const base64String = e.target.result.split(',')[1];
+                            const src = `data:${photoFile.type};base64,${base64String}`
+                            window.dispatchEvent(new CustomEvent('photo-and-location-captured', {
                                 detail: {
+                                    photoBase64: base64String,
+                                    latitude,
+                                    longitude,
                                     mapSrc: `https://www.google.com/maps?q=${latitude},${longitude}&hl=es&z=18&output=embed`,
                                     imgSrc: src
                                 }
@@ -323,7 +386,7 @@
 
                             // URL.revokeObjectURL(src); // TO IMPLEMENT
                         }
-                        reader.readAsArrayBuffer(photoFile);
+                        reader.readAsDataURL(photoFile);
                     }
                 },
                 (error) => {
