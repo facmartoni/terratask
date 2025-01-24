@@ -13,6 +13,9 @@
 
   <title>{{ config('app.name', 'Laravel') }}</title>
 
+  <!-- Localforage -->
+  <script src="{{ asset('/assets/localforage.min.js') }}"></script>
+
   {{-- START PWA CONFIG --}}
 
   <!-- Manifest Link -->

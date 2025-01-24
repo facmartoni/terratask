@@ -21,6 +21,7 @@ const urls = [
     '/assets/localforage.min.js',
     '/assets/alpine.min.js',
     '/offline.css',
+    '/offline.html',
     '/app.webmanifest'
 ];
 const strategy = new CacheFirst();
@@ -33,4 +34,4 @@ warmStrategyCache({urls, strategy});
 googleFontsCache();
 staticResourceCache();
 imageCache();
-offlineFallback();
+// offlineFallback();

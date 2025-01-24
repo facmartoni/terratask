@@ -47,3 +47,7 @@ window.addEventListener('ready-to-cache-users', async (e) => {
     await localforage.setItem('users', e.detail[0].users);
 })
 
+window.addEventListener('offline', () => {
+    window.location.href = '/offline.html'
+})
+

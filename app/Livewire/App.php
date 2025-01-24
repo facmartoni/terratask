@@ -16,27 +16,34 @@
   #[Layout('layouts.app')]
   class App extends Component {
 
-    // The dispatched data will be read in the entry point, app.js, for caching them with localforage.
     #[On('ready-to-save-tasks')]
     public function save_tasks($tasks): void {
-      // dd($tasks);
       foreach ($tasks as $task) {
-        Task::create([
-          'title' => $task['title'],
-          'description' => $task['description'] ?? null,
-          'photo_url' =>
-            $task['photoBase64'] ?
-              $this->store_base64_image_and_obtain_path($task['photoBase64']) :
-              null,
-          'created_by' => Auth::id(),
-          'assigned_to' => $task['assignee'] ?? null,
-          'priority' => $task['priority'],
-          'latitude' => $task['latitude'] ?? null,
-          'longitude' => $task['longitude'] ?? null,
-        ]);
+        if (
+          // Task::where('title', $task['title'])->doesntExist() &&
+          // Task::where('description', $task['description'])->doesntExist()
+        Task::where('title', $task['title'])
+          ->where('description', $task['description'])
+          ->doesntExist()
+        ) {
+          Task::create([
+            'title' => $task['title'],
+            'description' => $task['description'] ?? null,
+            'photo_url' =>
+              $task['photoBase64'] ?
+                $this->store_base64_image_and_obtain_path($task['photoBase64']) :
+                null,
+            'created_by' => Auth::id(),
+            'assigned_to' => $task['assignee'] ?? null,
+            'priority' => $task['priority'],
+            'latitude' => $task['latitude'] ?? null,
+            'longitude' => $task['longitude'] ?? null,
+          ]);
+        }
       }
     }
 
+    // The dispatched data will be read in the entry point, app.js, for caching them with localforage.
     #[On('app-online')]
     public function get_users_list(): void {
       $users = User::get(['id', 'name'])->toArray();

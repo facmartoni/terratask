@@ -17,7 +17,7 @@
     #[Validate('nullable|max:5000')]
     public ?string $description; // BIND DONE
 
-    #[Validate('nullable|image|max:20480')]
+    #[Validate('nullable|image')]
     public ?UploadedFile $image;
 
     #[Validate('nullable|regex:/^-?\d{1,2}\.\d+$/')]
