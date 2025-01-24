@@ -17,7 +17,7 @@
       id="task-title"
       name="task-title"
       placeholder="&quot;Aplicar agroquímicos&quot;, &quot;Ralear maleza hoy&quot;..."
-      class="w-full text-sm"
+      class="w-full text-base"
       wire:model="form.title"
     />
     @error('form.title')
@@ -33,7 +33,7 @@
       id="task-description"
       name="task-description"
       placeholder="&quot;Aplicar herbicidas para malezas pre-emergentes..&quot;"
-      class="w-full text-sm h-20"
+      class="w-full text-base h-20"
       wire:model="form.description"
     />
     @error('form.description')

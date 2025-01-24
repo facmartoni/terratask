@@ -8,7 +8,7 @@
         id="search-box"
         name="search-box"
         placeholder="&quot;Osvaldo&quot;, &quot;Caña Deshidratada&quot;, etc..."
-        class="w-full text-sm mb-4"
+        class="w-full text-base mb-4"
         wire:model.live.debounce="q"
       />
     </form>
