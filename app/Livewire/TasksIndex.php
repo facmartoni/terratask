@@ -5,12 +5,20 @@
   use Illuminate\Contracts\View\Factory;
   use Illuminate\Contracts\View\View;
   use Illuminate\Foundation\Application;
+  use Laravel\Jetstream\InteractsWithBanner;
   use Livewire\Attributes\On;
 
   class TasksIndex extends App {
+    use InteractsWithBanner;
 
     public bool $toggle_options = true;
     public string $active_filter = 'not-completed';
+
+    public function mount(): void {
+      if (request()->has('task-created')) {
+        $this->banner('Tarea creada con éxito!');
+      }
+    }
 
     #[On('task-list:not-completed')]
     public function make_not_completed_current_filter(): void {

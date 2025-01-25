@@ -9,12 +9,14 @@
   use Illuminate\Support\Facades\Auth;
   use Illuminate\Support\Facades\Storage;
   use Illuminate\View\View;
+  use Laravel\Jetstream\InteractsWithBanner;
   use Livewire\Attributes\Layout;
   use Livewire\Attributes\On;
   use Livewire\Component;
 
   #[Layout('layouts.app')]
   class App extends Component {
+    use InteractsWithBanner;
 
     #[On('ready-to-save-tasks')]
     public function save_tasks($tasks): void {
@@ -40,6 +42,9 @@
             'longitude' => $task['longitude'] ?? null,
           ]);
         }
+      }
+      if (!empty($tasks)) {
+        $this->banner('Tareas offline sincronizadas!');
       }
     }
 

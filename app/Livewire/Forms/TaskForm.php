@@ -12,25 +12,25 @@
     public ?Task $task;
 
     #[Validate('required|max:255')]
-    public string $title; // BIND DONE
+    public string $title;
 
     #[Validate('nullable|max:5000')]
-    public ?string $description; // BIND DONE
+    public ?string $description;
 
     #[Validate('nullable|image')]
     public ?UploadedFile $image;
 
     #[Validate('nullable|regex:/^-?\d{1,2}\.\d+$/')]
-    public ?string $latitude; // BIND DONE
+    public ?string $latitude;
 
     #[Validate('nullable|regex:/^-?\d{1,2}\.\d+$/')]
-    public ?string $longitude; // BIND DONE
+    public ?string $longitude;
 
     #[Validate('nullable|int|exists:users,id')]
-    public ?int $assigned_to; // BIND DONE
+    public ?int $assigned_to;
 
     #[Validate('nullable|int|in:1,2,3')]
-    public ?int $priority; // BIND DONE
+    public ?int $priority = 1;
 
     // TODO: setMyModel
 
@@ -39,13 +39,13 @@
 
       Task::create([
         'created_by' => Auth::id(),
-        'assigned_to' => $this->assigned_to,
+        'assigned_to' => $this->assigned_to ?? null,
         'title' => $this->title,
-        'description' => $this->description,
+        'description' => $this->description ?? null,
         'priority' => $this->priority,
-        'photo_url' => $this->image->store('images', 'public'),
-        'latitude' => $this->latitude,
-        'longitude' => $this->longitude
+        'photo_url' => $this->image ? $this->image->store('images', 'public') : null,
+        'latitude' => $this->latitude ?? null,
+        'longitude' => $this->longitude ?? null
       ]);
     }
 

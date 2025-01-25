@@ -20,7 +20,12 @@
       <x-general.page-header>{{ $task->title }}</x-general.page-header>
       <p class="mt-4 text-sm text-left">{{ $task->description }}</p>
       <div class="flex items-center my-4">
-        <x-general.author-photo :user="$task->author"/>
+        <a
+          href="/users/{{ $task->author->id }}"
+          wire:navigate
+        >
+          <x-general.author-photo :user="$task->author"/>
+        </a>
         <div
           id="users_detail"
           class="flex-1 flex flex-col justify-start pl-6 text-left"
@@ -38,10 +43,14 @@
         </div>
       </div>
       @if($task->latitude && $task->longitude)
-        <x-task.map
-          lat="{{ $task->latitude }}"
-          lon="{{ $task->longitude }}"
-        />
+        <div class="flex justify-center items-center w-full">
+          <x-task.map
+            w="400"
+            z="14"
+            lat="{{ $task->latitude }}"
+            lon="{{ $task->longitude }}"
+          />
+        </div>
       @endif
     </div>
     <div

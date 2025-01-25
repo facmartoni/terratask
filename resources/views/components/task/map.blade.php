@@ -1,6 +1,6 @@
 @props(['lat', 'lon', 'w' => 300, 'h' => 100, 'z' => 8])
 
-<div class="h-full">
+<div {{ $attributes->merge(['class' => 'h-full']) }}>
   <iframe
     width="{{ $w }}"
     height="{{ $h }}"

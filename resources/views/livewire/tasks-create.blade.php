@@ -1,9 +1,11 @@
-<div class="flex flex-col items-center">
+<div
+  class="flex flex-col items-center"
+>
 
   <x-general.page-header class="my-4">Crear Tarea</x-general.page-header>
 
   <form
-    class="w-full"
+    class="w-full h-full"
     enctype="multipart/form-data"
     wire:submit.prevent="save_task"
     method="POST"
@@ -18,6 +20,7 @@
       name="task-title"
       placeholder="&quot;Aplicar agroquímicos&quot;, &quot;Ralear maleza hoy&quot;..."
       class="w-full text-base"
+      value="{{ old('task-title') }}"
       wire:model="form.title"
     />
     @error('form.title')
@@ -34,6 +37,7 @@
       name="task-description"
       placeholder="&quot;Aplicar herbicidas para malezas pre-emergentes..&quot;"
       class="w-full text-base h-20"
+      value="{{ old('task-description') }}"
       wire:model="form.description"
     />
     @error('form.description')
@@ -208,6 +212,9 @@
     // *** GPS and Photo Preview Management ***
 
     document.getElementById('task-photo-input').addEventListener('change', (event) => {
+
+        event.preventDefault();
+
         if (navigator.geolocation) {
 
             checkGPSPermissions();

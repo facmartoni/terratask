@@ -1,5 +1,5 @@
 <div
-  class="fixed border-t border-gray-200 bottom-12 left-0 right-0 w-screen h-20 bg-white flex"
+  class="fixed border-t border-gray-200 bottom-12 standalone:bottom-16 left-0 right-0 w-screen h-20 bg-white flex"
   wire:transition
 >
   <div class="h-full w-16 flex justify-center items-center">
@@ -36,7 +36,7 @@
         class="flex"
       >
         <x-input
-          class="flex-1 text-xs mr-2"
+          class="flex-1 text-base mr-2"
           placeholder="Escribir un comentario..."
           wire:model="form.content"
         />

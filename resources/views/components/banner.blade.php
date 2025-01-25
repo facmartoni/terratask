@@ -12,7 +12,7 @@
             "
 >
   <div class="max-w-screen-xl mx-auto">
-    <div class="flex items-center justify-between flex-wrap w-full fixed right-0 top-0 left-0 py-2 px-3 sm:px-6 lg:px-8 bg-indigo-500">
+    <div class="flex items-center justify-between flex-wrap w-full fixed right-0 top-0 left-0 z-50 py-2 px-3 sm:px-6 lg:px-8 bg-indigo-500">
       <div class="w-0 flex-1 flex items-center min-w-0">
                 <span
                   class="flex p-2 rounded-lg"

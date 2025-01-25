@@ -22,6 +22,7 @@
       $this->tasks =
         Task::with(['author', 'assignee'])
           ->whereCompleted(false)
+          ->latest()
           ->get();
       $this->dispatch('hide-filter-options');
     }

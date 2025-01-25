@@ -4,7 +4,12 @@
   ])>
   <div class="pt-5 sm:p-6 flex">
     <div class="w-10 flex flex-col justify-between">
-      <x-general.author-photo :user="$comment->author"/>
+      <a
+        href="/users/{{ $comment->author->id }}"
+        wire:navigate
+      >
+        <x-general.author-photo :user="$comment->author"/>
+      </a>
       <livewire:like-button :$comment/>
     </div>
     <div

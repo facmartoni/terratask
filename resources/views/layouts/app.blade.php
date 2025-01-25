@@ -76,7 +76,9 @@
   @endif
 
   <!-- Page Content -->
-  <main class="w-full h-full px-4 pt-4 pb-20">
+  <main
+    class="w-full h-full px-4 pt-4 pb-20"
+  >
     {{ $slot }}
   </main>
 

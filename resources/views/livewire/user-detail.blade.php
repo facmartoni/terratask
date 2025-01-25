@@ -1,7 +1,7 @@
 <div class="flex flex-col w-full h-full items-center py-6">
   <x-general.author-photo
     :$user
-    size="32"
+    size="20"
   />
   <x-general.page-header class="mt-4">{{ $user->name }}</x-general.page-header>
   <p

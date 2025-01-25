@@ -7,11 +7,13 @@
   use Illuminate\Contracts\View\Factory;
   use Illuminate\Contracts\View\View;
   use Illuminate\Foundation\Application;
+  use Laravel\Jetstream\InteractsWithBanner;
   use Livewire\Attributes\On;
   use Livewire\WithFileUploads;
 
   class TasksCreate extends App {
     use WithFileUploads;
+    use InteractsWithBanner;
 
     public TaskForm $form;
 
@@ -45,7 +47,7 @@
 
     public function save_task(): void {
       $this->form->store();
-      $this->redirect('/', navigate: true);
+      $this->redirect('/?task-created');
     }
 
     public function render(): Application|Factory|View|\Illuminate\View\View {

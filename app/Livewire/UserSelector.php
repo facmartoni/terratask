@@ -6,6 +6,7 @@
   use Illuminate\Contracts\View\Factory;
   use Illuminate\Foundation\Application;
   use Illuminate\View\View;
+  use Livewire\Attributes\On;
   use Livewire\Component;
 
   class UserSelector extends Component {
@@ -13,6 +14,11 @@
     public ?User $selected_user = null;
     public User $user;
 
+
+    #[On('hide-users-list')]
+    public function hide_users_list(): void {
+      $this->users_list_visible = false;
+    }
 
     public function toggle_show_users_list(): void {
       $this->users_list_visible = !$this->users_list_visible;

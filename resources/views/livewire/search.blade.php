@@ -17,7 +17,14 @@
         ($this->users_results === null || $this->users_results->isEmpty())
         && ($this->tasks_results === null || $this->tasks_results->isEmpty())
        )
-      <x-graphics.not-found/>
+      <div class="h-full flex items-center py-24 shrink-0">
+        <img
+          class="opacity-10"
+          src="{{ asset('images/logo_budeguer_base_transparente.png') }}"
+          alt="Grupo Budeguer"
+        >
+      </div>
+      {{-- <x-graphics.not-found/> --}}
     @else
 
       @if($this->users_results)
