@@ -51,3 +51,17 @@ window.addEventListener('offline', () => {
     window.location.href = '/offline.html'
 })
 
+// function tasksIndexData() {
+//     return {
+//         offlineTasks: false,
+//         async init() {
+//             try {
+//                 const keys = await localforage.keys();
+//                 this.offlineTasks = keys.some((e) => e.includes('task '));
+//             } catch (e) {
+//                 console.error('Error returning localforage keys: ' + e)
+//             }
+//         }
+//     }
+// }
+

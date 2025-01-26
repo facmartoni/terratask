@@ -3,7 +3,17 @@
   <div
     id="header"
     class="w-full flex justify-between items-center mb-4"
-    x-data="tasksIndexData"
+    x-data="{
+       offlineTasks: false,
+       async init() {
+         try {
+           const keys = await localforage.keys();
+           this.offlineTasks = keys.some((e) => e.includes('task '));
+         } catch (e) {
+           console.error('Error returning localforage keys: ' + e)
+         }
+       }
+    }"
     x-init="init()"
   >
     <x-general.budeguer-logo/>
@@ -24,20 +34,20 @@
     <livewire:filter-options :$active_filter/>
   @endif
 
-  <script>
-      function tasksIndexData() {
-          return {
-              offlineTasks: false,
-              async init() {
-                  try {
-                      const keys = await localforage.keys();
-                      this.offlineTasks = keys.some((e) => e.includes('task '));
-                  } catch (e) {
-                      console.error('Error returning localforage keys: ' + e)
-                  }
-              }
-          }
-      }
-  </script>
+  {{-- <script>  --}}
+  {{--     function tasksIndexData() {  --}}
+  {{--         return {  --}}
+  {{--             offlineTasks: false,  --}}
+  {{--             async init() {  --}}
+  {{--                 try {  --}}
+  {{--                     const keys = await localforage.keys();  --}}
+  {{--                     this.offlineTasks = keys.some((e) => e.includes('task '));  --}}
+  {{--                 } catch (e) {  --}}
+  {{--                     console.error('Error returning localforage keys: ' + e)  --}}
+  {{--                 }  --}}
+  {{--             }  --}}
+  {{--         }  --}}
+  {{--     }  --}}
+  {{-- </script>  --}}
 
 </div>

@@ -25,7 +25,7 @@
     <div class="shrink-0">
       <img
         class="size-8 rounded-full"
-        src="{{ $task->author->profile_photo_path }}"
+        src="{{ asset($task->author->profile_photo_path) }}"
         alt="{{ $task->author->name }}"
       >
     </div>
