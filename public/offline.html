@@ -85,7 +85,7 @@
         id="form"
         enctype="multipart/form-data"
         method="POST"
-        @submit.prevent="submit"
+        @submit.prevent="submit()"
         x-data="getFormData"
         @photo-and-location-captured.window="
           form.latitude = $event.detail.latitude;
@@ -166,19 +166,25 @@
               class="w-full h-full object-cover"
             >
           </div>
-          <div class="shrink-0 flex-1">
-            <div class="h-full">
-              <iframe
-                width="100%"
-                height="100%"
-                style="border:0"
-                loading="lazy"
-                allowfullscreen
-                :src="mapSrc"
-              >
-              </iframe>
-            </div>
-          </div>
+
+          <!-- No reason to show the map if we are offline! -->
+
+          <!-- <div -->
+          <!--   class="shrink-0 flex-1" -->
+          <!--   x-if="navigator.onLine" -->
+          <!-- > -->
+          <!--   <div class="h-full"> -->
+          <!--     <iframe -->
+          <!--       width="100%" -->
+          <!--       height="100%" -->
+          <!--       style="border:0" -->
+          <!--       loading="lazy" -->
+          <!--       allowfullscreen -->
+          <!--       :src="mapSrc" -->
+          <!--     > -->
+          <!--     </iframe> -->
+          <!--   </div> -->
+          <!-- </div> -->
         </div>
 
         <!-- Task Assignment -->
@@ -320,8 +326,12 @@
           </button>
         </div>
 
-      </form>
+        <p
+          class="text-green-600 mt-6 text-center"
+          x-show="taskCreated"
+        >¡Tarea creada exitosamente!</p>
 
+      </form>
     </div>
   </main>
 </div>
@@ -345,10 +355,11 @@
                 assignee: null,
                 priority: 1, // TODO
             },
+            taskCreated: new URL(window.location.href).searchParams.get("success"),
             submit() {
                 let taskIdentifier = `task:${this.form.title.trim().toLowerCase().replace(/\s+/g, '-')}`;
                 localforage.setItem(taskIdentifier, {...this.form});
-                location.reload();
+                window.location.href = window.location.href.split('?')[0] + '?success=true';
             }
         }
     }

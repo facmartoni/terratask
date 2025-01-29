@@ -11,7 +11,7 @@ const {
     warmStrategyCache
 } = workbox.recipes;
 const {setDefaultHandler, registerRoute, staleWithRevalidate} = workbox.routing;
-const {NetworkOnly, CacheFirst} = workbox.strategies;
+const {NetworkOnly, CacheFirst, NetworkFirst} = workbox.strategies;
 
 setDefaultHandler(new NetworkOnly());
 
@@ -22,9 +22,10 @@ const urls = [
     '/assets/alpine.min.js',
     '/offline.css',
     '/offline.html',
+    '/offline.html?success=true',
     '/app.webmanifest'
 ];
-const strategy = new CacheFirst();
+const strategy = new NetworkFirst();
 
 urls.forEach(url => registerRoute(url, strategy));
 
