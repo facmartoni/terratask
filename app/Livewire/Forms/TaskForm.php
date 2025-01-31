@@ -37,13 +37,15 @@
     public function store(): void {
       $this->validate();
 
+      $image_path = $this->image ? $this->image->store('images', 'public') : null;
+
       Task::create([
         'created_by' => Auth::id(),
         'assigned_to' => $this->assigned_to ?? null,
         'title' => $this->title,
         'description' => $this->description ?? null,
         'priority' => $this->priority,
-        'photo_url' => $this->image ? $this->image->store('images', 'public') : null,
+        'photo_url' => $image_path,
         'latitude' => $this->latitude ?? null,
         'longitude' => $this->longitude ?? null
       ]);
