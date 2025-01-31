@@ -1,10 +1,13 @@
+# Ngrok Deploy Specific
+
 ngrok.yml
 storage/sharefile
-public/assets
 
+# Laravel
+#public/assets
 /.phpunit.cache
 /node_modules
-/public/build
+#/public/build
 /public/hot
 /public/storage
 /storage/*.key
