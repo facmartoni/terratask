@@ -7,7 +7,7 @@
     "serve": "php artisan serve",
     "share": "php artisan share",
     "start": "npm-run-all --parallel serve dev share",
-    "deploy": "build && git push"
+    "deploy": "npm run build && git push"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
