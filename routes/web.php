@@ -14,7 +14,6 @@
     config('jetstream.auth_session'),
     'verified',
   ])->group(function () {
-
     Route::get('/', TasksIndex::class);
     Route::get('/search', Search::class);
     Route::get('/tasks-create', TasksCreate::class);
@@ -22,9 +21,4 @@
     Route::get('/users/{user}', UserDetail::class);
     Route::get('/map', Map::class);
     Route::get('/profile', Profile::class);
-
-    // Route::get('/dashboard', function () {
-    //   return view('dashboard');
-    // })->name('dashboard');
-
   });
