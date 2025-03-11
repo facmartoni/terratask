@@ -14,6 +14,12 @@ Offline task management Progressive Web Application (PWA) tailored for agricultu
 
 TerraTask bridges a market gap by providing a scalable, cost-effective solution for local producers, replacing expensive English-language tools. Architected with a custom Service Worker, it ensures robust offline functionality for remote farming environments.
 
+## Screenshots
+
+| User Task Dashboard | Task Creation Form | Real-Time Search |
+|---------------------|--------------------|------------------|
+| ![Dashboard](screenshots/dashboard.png) | ![Task Creation](screenshots/task-creation.png) | ![Search](screenshots/search.png) |
+
 ## Key Features
 
 - **Offline-First Design**: Seamless task tracking in areas with limited connectivity.  
