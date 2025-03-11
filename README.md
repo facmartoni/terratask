@@ -2,6 +2,14 @@
 
 Offline task management Progressive Web Application (PWA) tailored for agriculture, built with Laravel, PHP, Alpine.js, and Livewire.
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=flat&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/Alpine.js-8BC0D0?style=flat&logo=alpine.js&logoColor=white" alt="Alpine.js">
+  <img src="https://img.shields.io/badge/Livewire-4E56A6?style=flat&logo=livewire&logoColor=white" alt="Livewire">
+  <img src="https://img.shields.io/badge/PWA-5A0FC8?style=flat&logo=pwa&logoColor=white" alt="PWA">
+</p>
+
 ## Overview
 
 TerraTask bridges a market gap by providing a scalable, cost-effective solution for local producers, replacing expensive English-language tools. Architected with a custom Service Worker, it ensures robust offline functionality for remote farming environments.
